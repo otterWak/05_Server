@@ -52,6 +52,17 @@ public class DetailServlet extends HttpServlet{
 			// index 번째 todo가 존재하는 경우
 			// detail.jsp로 forward 해서 응답
 			
+			// 요청 위임한 페이지에서
+			// 서비스로부터 얻어온 todo를 사용하기 위해
+			// request scope 세팅
+			req.setAttribute("todo", todo);
+			
+			// JSP 파일 경로 (webapp 폴더 기준으로 작성)
+			String path = "/WEB-INF/views/detail.jsp";
+			
+			// 요청 발송자(Disspatcher)를 이용해서 요청 위임
+			req.getRequestDispatcher(path).forward(req, resp);
+			
 			
 			
 		}catch (Exception e) {
